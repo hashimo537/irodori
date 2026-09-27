@@ -1,0 +1,1440 @@
+/* =========================================================
+   いろどり — 共通スタイル
+   ========================================================= */
+:root {
+    --bg: #FAF8F3;
+    --surface: #FFFFFF;
+    --ink: #3E3A34;
+    --sub: #8A8175;
+    --line: #E8E2D8;
+    --line-strong: #DAD2C4;
+    --accent: #6E8B6A;
+    --accent-dark: #5C7758;
+    --danger: #B5726F;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: var(--accent-dark);
+}
+
+.wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 16px 120px;
+}
+
+.wrap.narrow {
+    max-width: 560px;
+}
+
+/* ---------- ヘッダー ---------- */
+header.app {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 14px 16px 12px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand h1 {
+    font-size: 27px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: .16em;
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand h1 a {
+    color: var(--ink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-dots {
+    display: inline-flex;
+    gap: 4px;
+    flex: none;
+}
+
+.logo-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: block;
+}
+
+.brand .family {
+    font-size: 13px;
+    color: var(--sub);
+    border-left: 1px solid var(--line-strong);
+    padding-left: 12px;
+    align-self: center;
+}
+
+.brand .spacer {
+    flex: 1;
+}
+
+.brand nav {
+    display: flex;
+    gap: 4px;
+}
+
+.brand nav a,
+.brand nav button {
+    font-size: 13px;
+    color: var(--sub);
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.brand nav a:hover {
+    background: #F1EDE4;
+}
+
+.weeknav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.weeknav .range {
+    font-size: 18px;
+    font-weight: 700;
+    flex: 1;
+}
+
+.weeknav .range small {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--sub);
+    letter-spacing: .04em;
+}
+
+.navbtn {
+    min-width: 48px;
+    height: 48px;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 17px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+}
+
+.navbtn.text {
+    padding: 0 14px;
+    font-size: 14px;
+    min-width: 0;
+}
+
+/* ---------- 凡例 ---------- */
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.chip .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.chip.off {
+    opacity: .38;
+}
+
+/* ---------- お知らせ ---------- */
+.flash {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #EAF0E7;
+    border: 1px solid #CFDDC9;
+    font-size: 14px;
+}
+
+.errors {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #F7E9E8;
+    border: 1px solid #E4C9C7;
+    font-size: 14px;
+    color: #8E4E4B;
+}
+
+.errors ul {
+    margin: 4px 0 0;
+    padding-left: 18px;
+}
+
+/* ---------- 提出物バー ---------- */
+.todo {
+    margin-top: 16px;
+    padding: 12px 14px;
+    background: #FFFDF7;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.todo h2 {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sub);
+    letter-spacing: .06em;
+}
+
+.todo ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+}
+
+.todo li {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.todo .when {
+    font-size: 12px;
+    color: var(--sub);
+    background: #F1EDE4;
+    border-radius: 6px;
+    padding: 1px 7px;
+}
+
+.todo .when.urgent {
+    color: #B0724F;
+    background: #F7E6DC;
+}
+
+.todo form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+}
+
+.todo input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+}
+
+/* ---------- 週グリッド ---------- */
+.board {
+    margin-top: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.daybar {
+    display: grid;
+    grid-template-columns: 52px repeat(7, 1fr);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.daybar>div {
+    padding: 9px 4px;
+    text-align: center;
+    font-size: 13px;
+    border-left: 1px solid var(--line);
+}
+
+.daybar>div:first-child {
+    border-left: none;
+}
+
+.daybar .num {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.daybar .sat {
+    color: #6F91A8;
+}
+
+.daybar .sun {
+    color: #BE8184;
+}
+
+.daybar .today {
+    background: #F3F0E8;
+}
+
+.daybar .today .num {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 7px;
+}
+
+/* 終日の予定を並べる行 */
+.alldaybar {
+    display: grid;
+    grid-template-columns: 52px repeat(7, 1fr);
+    border-bottom: 1px solid var(--line);
+    background: #FCFAF5;
+}
+
+.alldaybar>div {
+    padding: 5px 4px;
+    border-left: 1px solid var(--line);
+    min-height: 48px;
+}
+
+.alldaybar>div:first-child {
+    border-left: none;
+    font-size: 10px;
+    color: var(--sub);
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 7px;
+    text-align: right;
+}
+
+/* 終日の予定：時間の帯と区別するため、枠線でぐるりと囲む */
+.allday {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 5px 7px;
+    margin-bottom: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1.5px solid;
+    line-height: 1.35;
+}
+
+.allday .who {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--sub);
+}
+
+.tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    vertical-align: 1px;
+    background: rgba(255, 255, 255, .75);
+}
+
+/* しめきり（提出物の期限） */
+.allday.due {
+    background: #FFF6EC;
+    border-color: #E0B98F;
+    border-style: dashed;
+    color: #8A5A32;
+}
+
+.allday.due .tag {
+    background: #E0B98F;
+    color: #fff;
+}
+
+.scroller {
+    max-height: 540px;
+    overflow-y: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 52px repeat(7, 1fr);
+    position: relative;
+}
+
+.hours {
+    position: relative;
+}
+
+.hours .h {
+    position: absolute;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    color: var(--sub);
+    text-align: right;
+    padding-right: 7px;
+    transform: translateY(-8px);
+}
+
+.col {
+    position: relative;
+    border-left: 1px solid var(--line);
+}
+
+.col.weekend {
+    background: #FCFAF5;
+}
+
+.rule {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--line);
+}
+
+.rule.half {
+    background: #F2EDE3;
+}
+
+/* ---------- 予定の帯 ---------- */
+.slot {
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    border-radius: 8px;
+    padding: 5px 7px 5px 9px;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1.35;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+}
+
+.slot .t {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.slot .m {
+    display: block;
+    color: var(--sub);
+}
+
+.slot .time {
+    display: block;
+    font-size: 11px;
+    color: var(--sub);
+}
+
+.slot.narrow {
+    padding-top: 3px;
+}
+
+.slot.narrow .time {
+    display: none;
+}
+
+/* 「メモあり」のスタンプ */
+.stamp {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin-left: 5px;
+    vertical-align: 1px;
+    background: rgba(62, 58, 52, .10);
+    color: var(--sub);
+}
+
+.note-box {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #FFFDF7;
+    border: 1px solid var(--line);
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.empty {
+    color: var(--sub);
+    text-align: center;
+    padding: 28px 0;
+}
+
+/* ---------- ボタン ---------- */
+.fab {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    z-index: 40;
+    height: 56px;
+    padding: 0 30px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 3px 14px rgba(62, 58, 52, .18);
+    cursor: pointer;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    font-family: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 700;
+}
+
+.btn.danger {
+    color: var(--danger);
+    border-color: #E4C9C7;
+    background: #FDF8F7;
+}
+
+.btn.block {
+    width: 100%;
+}
+
+.btn-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+
+/* ---------- フォーム ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 18px;
+}
+
+.card h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+}
+
+.card p.lead {
+    margin: 0 0 18px;
+    font-size: 14px;
+    color: var(--sub);
+}
+
+.field {
+    margin-bottom: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.field .hint {
+    font-size: 12px;
+    color: var(--sub);
+    font-weight: 400;
+}
+
+.field input[type=text],
+.field input[type=date],
+.field input[type=time],
+.field input[type=email],
+.field input[type=password],
+.field select,
+.field textarea {
+    width: 100%;
+    height: 52px;
+    padding: 0 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.field textarea {
+    height: auto;
+    padding: 12px 14px;
+    line-height: 1.6;
+}
+
+.field .err {
+    color: #8E4E4B;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}
+
+.field-row>* {
+    flex: 1;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.check input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--accent);
+}
+
+/* 色えらび */
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.colors label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: var(--sub);
+    cursor: pointer;
+}
+
+.colors input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.colors .swatch {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    border: 3px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+.colors input:checked+.swatch {
+    border-color: var(--ink);
+}
+
+.colors input:checked+.swatch::after {
+    content: '✓';
+}
+
+/* 曜日えらび */
+.weekdays {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.weekdays label {
+    cursor: pointer;
+}
+
+.weekdays input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.weekdays span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    font-size: 15px;
+}
+
+.weekdays input:checked+span {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 700;
+}
+
+/* ---------- 一覧（習い事・子ども・タスク） ---------- */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.item .bar {
+    width: 4px;
+    align-self: stretch;
+    border-radius: 2px;
+    flex: none;
+}
+
+.item .body {
+    flex: 1;
+    min-width: 0;
+}
+
+.item .body b {
+    font-size: 16px;
+    display: block;
+}
+
+.item .body span {
+    font-size: 13px;
+    color: var(--sub);
+}
+
+.item .actions {
+    display: flex;
+    gap: 6px;
+    flex: none;
+}
+
+.item .actions a,
+.item .actions button {
+    font-size: 13px;
+    color: var(--sub);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-decoration: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.item.done .body b {
+    text-decoration: line-through;
+    color: var(--sub);
+}
+
+.section-title {
+    font-size: 14px;
+    color: var(--sub);
+    font-weight: 700;
+    margin: 26px 0 0;
+    letter-spacing: .06em;
+}
+
+.invite-code {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: .24em;
+    text-align: center;
+    background: #F3F0E8;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 14px 0;
+}
+
+/* ---------- スマホ：1日表示に差し替え ---------- */
+.dayview {
+    display: none;
+}
+
+@media (max-width:767px) {
+    .board {
+        display: none;
+    }
+
+    .dayview {
+        display: block;
+        margin-top: 18px;
+    }
+
+    .daytabs {
+        display: flex;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .daytab {
+        flex: none;
+        width: 52px;
+        height: 60px;
+        border-radius: 12px;
+        border: 1px solid var(--line-strong);
+        background: var(--surface);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        color: var(--sub);
+        cursor: pointer;
+        font-family: inherit;
+        text-decoration: none;
+    }
+
+    .daytab b {
+        font-size: 17px;
+        color: var(--ink);
+    }
+
+    .daytab.on {
+        background: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .daytab.on,
+    .daytab.on b {
+        color: #fff;
+    }
+
+    .daytab .pips {
+        display: flex;
+        gap: 3px;
+        margin-top: 3px;
+        height: 5px;
+    }
+
+    .daytab .pips i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+    }
+
+    .daylist {
+        margin-top: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .drow {
+        display: flex;
+        gap: 12px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        text-decoration: none;
+        color: var(--ink);
+    }
+
+    .drow .clock {
+        font-size: 13px;
+        color: var(--sub);
+        width: 52px;
+        flex: none;
+        padding-top: 2px;
+    }
+
+    .drow .clock b {
+        display: block;
+        font-size: 15px;
+        color: var(--ink);
+    }
+
+    .drow .bar {
+        width: 4px;
+        border-radius: 2px;
+        flex: none;
+    }
+
+    .drow .body b {
+        font-size: 16px;
+    }
+
+    .drow .body span {
+        display: block;
+        font-size: 13px;
+        color: var(--sub);
+    }
+
+    .wrap {
+        padding-bottom: 110px;
+    }
+
+    .brand h1 {
+        font-size: 18px;
+    }
+
+    .field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* =========================================================
+   月カレンダー表示
+   ========================================================= */
+.viewswitch {
+    display: flex;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.viewswitch a {
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--sub);
+    text-decoration: none;
+}
+
+.viewswitch a.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 700;
+}
+
+.month {
+    margin-top: 18px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.mhead {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-bottom: 1px solid var(--line);
+}
+
+.mhead div {
+    padding: 9px 2px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--sub);
+    border-left: 1px solid var(--line);
+}
+
+.mhead div:first-child {
+    border-left: none;
+}
+
+.mhead .sat {
+    color: #6F91A8;
+}
+
+.mhead .sun {
+    color: #BE8184;
+}
+
+.mgrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.mcell {
+    min-height: 104px;
+    padding: 6px 6px 8px;
+    border-left: 1px solid var(--line);
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.mcell:nth-child(7n+1) {
+    border-left: none;
+}
+
+.mcell.other {
+    background: #FBF9F5;
+}
+
+.mcell.other .d {
+    color: #C5BCAD;
+}
+
+.mcell.weekend {
+    background: #FCFAF5;
+}
+
+.mcell .d {
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.mcell.today .d {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 7px;
+    align-self: flex-start;
+}
+
+.mcell .d.sat {
+    color: #6F91A8;
+}
+
+.mcell .d.sun {
+    color: #BE8184;
+}
+
+/* 子どもの色まる */
+.mdots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.mdots i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: block;
+}
+
+.mchip {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: 2px 5px;
+    border-radius: 6px;
+    border: 1.2px solid;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mchip.due {
+    background: #FFF6EC;
+    border-color: #E0B98F;
+    border-style: dashed;
+    color: #8A5A32;
+}
+
+.mlegend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--sub);
+}
+
+.mlegend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mlegend i {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+}
+
+@media (max-width:767px) {
+    .mcell {
+        min-height: 76px;
+        padding: 5px 4px 6px;
+        gap: 3px;
+    }
+
+    .mcell .d {
+        font-size: 12px;
+    }
+
+    .mdots i {
+        width: 9px;
+        height: 9px;
+    }
+
+    .mchip {
+        display: none;
+    }
+
+    /* スマホでは色まるだけにする */
+    .mhead div {
+        font-size: 12px;
+        padding: 7px 1px;
+    }
+
+    .brand h1 {
+        font-size: 22px;
+        letter-spacing: .12em;
+    }
+
+    .brand .family {
+        display: none;
+    }
+}
+
+/* しめきりの行（終日の行とは別に、下に並べる） */
+.alldaybar.duebar {
+    background: #FFFBF4;
+}
+
+.alldaybar.duebar>div {
+    min-height: 40px;
+}
+
+.alldaybar.duebar>div:first-child {
+    color: #A87C4F;
+    font-weight: 700;
+}
+
+/* =========================================================
+   入力フォームを分かりやすく
+   ========================================================= */
+/* まだ何も入っていない欄の案内文は、うんと薄く */
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #C3BBAD;
+}
+
+/* いま入力している欄をはっきり見せる */
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(110, 139, 106, .18);
+}
+
+/* 未入力の日付・時刻欄の文字も薄く（入力すると濃くなる） */
+.field input[type=date]:invalid,
+.field input[type=time]:invalid {
+    color: #C3BBAD;
+}
+
+/* ラベル横の「必須 / 任意」 */
+.req,
+.opt {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 2px 6px;
+    border-radius: 5px;
+    margin-left: 7px;
+    vertical-align: 1px;
+}
+
+.req {
+    background: #EAF0E7;
+    color: #4F6B4B;
+}
+
+.opt {
+    background: #F1EDE4;
+    color: var(--sub);
+}
+
+/* あらかじめ入れてある値についての注意書き */
+.prefill {
+    font-size: 12px;
+    color: var(--sub);
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   追加機能（横並び・記念日・お迎え・月の切り替え・天気）
+   ========================================================= */
+
+/* 時間が重なる予定を横に並べるため、右端固定をやめる。
+   left と width は Blade から1本ずつ指定する。 */
+.slot {
+    right: auto;
+}
+
+.slot.side .t {
+    font-size: 12px;
+}
+
+.slot.side .time {
+    display: none;
+}
+
+/* お迎え担当 */
+.pickup {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin-left: 5px;
+    background: #E7EDF2;
+    color: #4E6B80;
+}
+
+/* 記念日 */
+.allday.anniv {
+    background: #FBF2D8;
+    border-color: #D8BE6A;
+    color: #7A6320;
+}
+
+.allday.anniv .tag {
+    background: #D8BE6A;
+    color: #fff;
+}
+
+.mchip.anniv {
+    background: #FBF2D8;
+    border-color: #D8BE6A;
+    color: #7A6320;
+}
+
+/* 月表示の切り替えボタン */
+.mtoggle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.mtoggle .lbl {
+    font-size: 12px;
+    color: var(--sub);
+    margin-right: 2px;
+}
+
+.mtoggle a {
+    height: 36px;
+    padding: 0 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--sub);
+    text-decoration: none;
+}
+
+.mtoggle a.on {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 700;
+}
+
+.mtoggle a i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.mtoggle .sep {
+    width: 1px;
+    height: 24px;
+    background: var(--line);
+    margin: 0 4px;
+}
+
+/* 月のマスの天気 */
+.mcell .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.mw {
+    font-size: 14px;
+    line-height: 1;
+    flex: none;
+}
+
+.mw small {
+    display: block;
+    font-size: 9px;
+    color: var(--sub);
+    text-align: right;
+    margin-top: 2px;
+}
+
+/* 地域設定の候補 */
+.cand {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.cand form {
+    margin: 0;
+}
+
+.cand button {
+    width: 100%;
+    text-align: left;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--surface);
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    cursor: pointer;
+}
+
+.cand button small {
+    display: block;
+    font-size: 12px;
+    color: var(--sub);
+}
+
+.nowset {
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #EAF0E7;
+    border: 1px solid #CFDDC9;
+    font-size: 14px;
+}
+
+@media (max-width:767px) {
+    .mw {
+        font-size: 12px;
+    }
+
+    .mw small {
+        display: none;
+    }
+
+    .mtoggle a {
+        height: 34px;
+        font-size: 12px;
+        padding: 0 11px;
+    }
+}
