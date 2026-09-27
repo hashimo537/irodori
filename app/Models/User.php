@@ -42,4 +42,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /** この人が所属している家族 */
+    public function family()
+    {
+        return $this->belongsTo(\App\Models\Family::class);
+    }
+
+    public function hasFamily(): bool
+    {
+        return !is_null($this->family_id);
+    }
 }

@@ -20,17 +20,18 @@
                         </span>いろどり</a></h1>
                 <span class="family">{{ auth()->user()->family->name ?? '' }}</span>
                 <span class="spacer"></span>
-                <nav>
-                    <a href="{{ route('month') }}">月</a>
-                    <a href="{{ route('lessons.index') }}">習い事</a>
-                    <a href="{{ route('anniversaries.index') }}">記念日</a>
-                    <a href="{{ route('tasks.index') }}">提出物</a>
-                    <a href="{{ route('members.index') }}">家族</a>
-                    <form method="post" action="{{ route('logout') }}" style="display:inline;">
-                        @csrf
-                        <button type="submit">ログアウト</button>
-                    </form>
-                </nav>
+                    <nav>
+                        {{-- ルートを作った回にコメントを外していく --}}
+                        {{-- <a href="{{ route('month') }}">月</a> --}}
+                        {{-- <a href="{{ route('lessons.index') }}">習い事</a> --}}
+                        {{-- <a href="{{ route('anniversaries.index') }}">記念日</a> --}}
+                        {{-- <a href="{{ route('tasks.index') }}">提出物</a> --}}
+                        {{-- <a href="{{ route('members.index') }}">家族</a> --}}
+                        <form method="post" action="{{ route('logout') }}" style="display:inline;">
+                            @csrf
+                            <button type="submit">ログアウト</button>
+                        </form>
+                    </nav>
             </div>
             @yield('header')
         </div>
