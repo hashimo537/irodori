@@ -119,8 +119,6 @@ $base = ['month' => $month->format('Y-m')];
         <span><i style="background:#A79BC0"></i>家族ぜんいん</span>
     </div>
 
-        {{-- 天気の設定：9-8 で family.settings ルートを作ったら、このコメントを外す --}}
-        {{--
         <p class="prefill" style="margin-top:14px;">
             @if ($family->hasLocation())
             天気は「{{ $family->location_name }}」の予報です（16日先まで）。
@@ -129,7 +127,7 @@ $base = ['month' => $month->format('Y-m')];
             <a href="{{ route('family.settings') }}">地域を設定する</a>と、天気予報が出せます。
             @endif
         </p>
-        --}}
+        
 
     <p class="empty">日にちをおすと、その週のタイムラインが開きます。</p>
 
