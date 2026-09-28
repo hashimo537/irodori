@@ -11,6 +11,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('family_id')->constrained()->cascadeOnDelete();
             $table->foreignId('member_id')->constrained()->cascadeOnDelete();
+            // お迎え担当。決まっていないことも多いので nullable
+            $table->foreignId('pickup_user_id')->nullable()
+                  ->constrained('users')->nullOnDelete();
             $table->string('title');                          // 「スイミング」
             $table->string('place')->nullable();              // 「市民プール」
             $table->unsignedTinyInteger('day_of_week');       // 0=日 ... 6=土
