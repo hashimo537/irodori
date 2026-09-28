@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\WeekController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\AnniversaryController;
+use App\Http\Controllers\MonthController;
+use App\Http\Controllers\TaskController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,13 +31,19 @@ Route::middleware('auth')->group(function () {
     // --- ここから先は家族に入っている人だけ ---
     Route::middleware('has.family')->group(function () {
 
-        // WeekController に差し替える
-        Route::get('/home', fn () => view('home-placeholder'))->name('home');
+        // ログイン後の飛び先。RouteServiceProvider::HOME = '/home' と一致させている
+        Route::get('/home', [WeekController::class, 'index'])->name('home');
+
+        // 月カレンダー表示
+        Route::get('/month', [MonthController::class, 'index'])->name('month');
 
         Route::get('/family/invite', [FamilyController::class, 'invite'])->name('family.invite');
 
         Route::resource('members', MemberController::class)->except(['show', 'create']);
         Route::resource('events', EventController::class)->except(['show', 'index']);
         Route::resource('lessons', LessonController::class)->except(['show']);
+
+        Route::resource('tasks', TaskController::class)->only(['index', 'store', 'update', 'destroy']);
+        Route::resource('anniversaries', AnniversaryController::class)->except(['show', 'create']);
     });
 });
