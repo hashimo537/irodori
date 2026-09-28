@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Family;
 use Illuminate\Http\Request;
+use App\Services\WeatherService;
 
 class FamilyController extends Controller
 {
@@ -67,5 +68,51 @@ class FamilyController extends Controller
         return view('family.invite', [
             'family' => $request->user()->family,
         ]);
+    }
+
+    /**
+     * 地域の設定（天気予報のため）。
+     * q が入っていれば地名を検索して候補を出す。
+     */
+    public function settings(Request $request, WeatherService $weather)
+    {
+        $candidates = [];
+
+        if ($request->filled('q')) {
+            $candidates = $weather->search($request->input('q'));
+        }
+
+        return view('family.settings', [
+            'family' => $request->user()->family,
+            'q' => $request->input('q', ''),
+            'candidates' => $candidates,
+        ]);
+    }
+
+    /** 選んだ地点を保存する */
+    public function saveLocation(Request $request)
+    {
+        $data = $request->validate([
+            'location_name' => ['required', 'string', 'max:60'],
+            'latitude' => ['required', 'numeric', 'between:-90,90'],
+            'longitude' => ['required', 'numeric', 'between:-180,180'],
+        ], [], ['location_name' => '地域']);
+
+        $request->user()->family->update($data);
+
+        return redirect()->route('month')
+            ->with('status', "天気予報の地点を「{$data['location_name']}」にしました。");
+    }
+
+    /** 地点の設定を消す（天気を出さなくする） */
+    public function clearLocation(Request $request)
+    {
+        $request->user()->family->update([
+            'location_name' => null,
+            'latitude' => null,
+            'longitude' => null,
+        ]);
+
+        return back()->with('status', '天気予報を出さない設定にしました。');
     }
 }
