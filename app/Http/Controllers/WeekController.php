@@ -14,6 +14,7 @@ class WeekController extends Controller
 {
     /** タイムラインの表示範囲：6:00 〜 22:00、1分 = 1px */
     public const START_MIN = 6 * 60;
+
     public const END_MIN = 22 * 60;
 
     public function index(Request $request)
@@ -23,7 +24,7 @@ class WeekController extends Controller
         $start = $base->copy()->startOfWeek(Carbon::MONDAY);
         $end = $start->copy()->addDays(6);
 
-        $days = collect(range(0, 6))->map(fn($i) => $start->copy()->addDays($i));
+        $days = collect(range(0, 6))->map(fn ($i) => $start->copy()->addDays($i));
 
         // ---- 2. データをまとめて取る（N+1を避ける） -------------------
         $members = Member::orderBy('sort_order')->orderBy('id')->get();
@@ -46,7 +47,7 @@ class WeekController extends Controller
 
             // 習い事（毎週くりかえし）をこの日に展開する
             foreach ($lessons as $lesson) {
-                if (!$lesson->activeOn($day)) {
+                if (! $lesson->activeOn($day)) {
                     continue;
                 }
                 $slots[] = $this->makeSlot(
@@ -63,7 +64,7 @@ class WeekController extends Controller
 
             // 単発の予定
             foreach ($events as $event) {
-                if (!$event->date->isSameDay($day)) {
+                if (! $event->date->isSameDay($day)) {
                     continue;
                 }
 
@@ -79,6 +80,7 @@ class WeekController extends Controller
                         'note' => filled($event->note),
                         'pickup' => $event->pickup?->name,
                     ];
+
                     continue;
                 }
 
@@ -98,14 +100,14 @@ class WeekController extends Controller
 
             // 記念日（毎年おなじ月日）
             foreach ($anniversaries as $anniv) {
-                if (!$anniv->fallsOn($day)) {
+                if (! $anniv->fallsOn($day)) {
                     continue;
                 }
                 $age = $anniv->ageOn($day);
                 $allDay[] = [
                     'kind' => 'anniv',
                     'id' => $anniv->id,
-                    'title' => $anniv->title . ($age !== null ? "（{$age}さい）" : ''),
+                    'title' => $anniv->title.($age !== null ? "（{$age}さい）" : ''),
                     'place' => null,
                     'name' => $anniv->member->name ?? '家族',
                     'color' => $anniv->member->color ?? '#C9A227',
@@ -153,8 +155,7 @@ class WeekController extends Controller
      */
     private function layout(array $slots): array
     {
-        usort($slots, fn($a, $b) =>
-            [$a['start_min'], $a['end_min']] <=> [$b['start_min'], $b['end_min']]);
+        usort($slots, fn ($a, $b) => [$a['start_min'], $a['end_min']] <=> [$b['start_min'], $b['end_min']]);
 
         // ① 塊に分ける
         $clusters = [];

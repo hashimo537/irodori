@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\BelongsToFamily;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Lesson extends Model
 {
-    use HasFactory, BelongsToFamily;
+    use BelongsToFamily, HasFactory;
 
     protected $fillable = [
         'member_id',
@@ -47,7 +48,7 @@ class Lesson extends Model
     }
 
     /** その日にこの習い事があるか（通っている期間内かどうか） */
-    public function activeOn(\Carbon\CarbonInterface $date): bool
+    public function activeOn(CarbonInterface $date): bool
     {
         if ($date->dayOfWeek !== (int) $this->day_of_week) {
             return false;
@@ -58,6 +59,7 @@ class Lesson extends Model
         if ($this->ends_on && $date->gt($this->ends_on)) {
             return false;
         }
+
         return true;
     }
 

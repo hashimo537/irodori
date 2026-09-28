@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Anniversary;
 use App\Models\Family;
 use App\Models\User;
 use Carbon\Carbon;
@@ -87,7 +86,7 @@ class DemoSeeder extends Seeder
             'place' => '総合体育館',
             'date' => $saturday->copy()->addDay()->toDateString(),
             'start_time' => null,          // 終日
-            'note' => "8:30 集合。体操服とお茶を忘れずに。",
+            'note' => '8:30 集合。体操服とお茶を忘れずに。',
             'created_by' => $user->id,
         ]);
 

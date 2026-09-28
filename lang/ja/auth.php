@@ -1,4 +1,5 @@
 <?php
+
 // lang/ja/auth.php
 
 return [

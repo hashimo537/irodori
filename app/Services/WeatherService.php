@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 class WeatherService
 {
     private const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
+
     private const GEOCODING_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 
     /** 予報が出せる最大日数（Open-Meteo の上限） */
@@ -91,7 +92,7 @@ class WeatherService
      * 日付ごとの天気を返す。
      *
      * @return array<string, array{icon:string,label:string,max:?float,min:?float}>
-     *         キーは 'Y-m-d'。取れなかったときは空配列。
+     *                                                                              キーは 'Y-m-d'。取れなかったときは空配列。
      */
     public function daily(?float $lat, ?float $lon): array
     {
@@ -112,7 +113,7 @@ class WeatherService
                     'forecast_days' => self::MAX_DAYS,
                 ]);
 
-                if (!$response->successful()) {
+                if (! $response->successful()) {
                     return [];
                 }
 
@@ -133,7 +134,7 @@ class WeatherService
                 return $out;
             } catch (\Throwable $e) {
                 // 天気が出ないだけで、カレンダーは使えるべき
-                Log::warning('天気予報の取得に失敗しました: ' . $e->getMessage());
+                Log::warning('天気予報の取得に失敗しました: '.$e->getMessage());
 
                 return [];
             }
@@ -155,12 +156,12 @@ class WeatherService
                 'format' => 'json',
             ]);
 
-            if (!$response->successful()) {
+            if (! $response->successful()) {
                 return [];
             }
 
             return collect($response->json('results') ?? [])
-                ->map(fn($r) => [
+                ->map(fn ($r) => [
                     'name' => $r['name'] ?? '',
                     'admin' => $r['admin1'] ?? '',
                     'latitude' => (float) $r['latitude'],
@@ -168,7 +169,7 @@ class WeatherService
                 ])
                 ->all();
         } catch (\Throwable $e) {
-            Log::warning('地名の検索に失敗しました: ' . $e->getMessage());
+            Log::warning('地名の検索に失敗しました: '.$e->getMessage());
 
             return [];
         }

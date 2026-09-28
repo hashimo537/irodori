@@ -36,7 +36,7 @@ class LessonController extends Controller
     public function edit(Lesson $lesson)
     {
         return view('lessons.edit', [
-            'lesson'  => $lesson,
+            'lesson' => $lesson,
             'members' => Member::orderBy('sort_order')->get(),
             'parents' => User::where('family_id', auth()->user()->family_id)->orderBy('id')->get(),
         ]);
@@ -59,26 +59,26 @@ class LessonController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
-            'member_id'   => ['required', 'exists:members,id'],
+            'member_id' => ['required', 'exists:members,id'],
             // お迎え担当は「同じ家族のユーザー」だけ選べるようにする
             'pickup_user_id' => ['nullable', Rule::in(
                 User::where('family_id', auth()->user()->family_id)->pluck('id')->all()
             )],
-            'title'       => ['required', 'string', 'max:40'],
-            'place'       => ['nullable', 'string', 'max:40'],
+            'title' => ['required', 'string', 'max:40'],
+            'place' => ['nullable', 'string', 'max:40'],
             'day_of_week' => ['required', 'integer', 'between:0,6'],
-            'start_time'  => ['required', 'date_format:H:i'],
-            'end_time'    => ['required', 'date_format:H:i', 'after:start_time'],
-            'starts_on'   => ['required', 'date'],
-            'ends_on'     => ['nullable', 'date', 'after:starts_on'],
+            'start_time' => ['required', 'date_format:H:i'],
+            'end_time' => ['required', 'date_format:H:i', 'after:start_time'],
+            'starts_on' => ['required', 'date'],
+            'ends_on' => ['nullable', 'date', 'after:starts_on'],
         ], [], [
-            'member_id'      => 'だれの',
-            'title'          => '習い事の名前',
-            'day_of_week'    => '曜日',
-            'start_time'     => 'はじまる時間',
-            'end_time'       => 'おわる時間',
-            'starts_on'      => '通いはじめた日',
-            'ends_on'        => 'おわる日',
+            'member_id' => 'だれの',
+            'title' => '習い事の名前',
+            'day_of_week' => '曜日',
+            'start_time' => 'はじまる時間',
+            'end_time' => 'おわる時間',
+            'starts_on' => '通いはじめた日',
+            'ends_on' => 'おわる日',
             'pickup_user_id' => 'お迎え担当',
         ]);
     }

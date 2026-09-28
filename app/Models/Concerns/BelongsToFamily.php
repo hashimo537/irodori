@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Family;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -15,7 +16,7 @@ trait BelongsToFamily
         // 全クエリに自動で where family_id = ? を付ける
         static::addGlobalScope('family', function (Builder $query) {
             if (auth()->check() && auth()->user()->family_id) {
-                $query->where($query->getModel()->getTable() . '.family_id', auth()->user()->family_id);
+                $query->where($query->getModel()->getTable().'.family_id', auth()->user()->family_id);
             }
         });
 
@@ -29,6 +30,6 @@ trait BelongsToFamily
 
     public function family()
     {
-        return $this->belongsTo(\App\Models\Family::class);
+        return $this->belongsTo(Family::class);
     }
 }
