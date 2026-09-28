@@ -20,5 +20,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         \Carbon\Carbon::setLocale('ja');
+        \DB::listen(fn($q) => logger($q->sql));
     }
 }

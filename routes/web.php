@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\FamilyController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\MemberController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
  | ログイン・新規登録・ログアウトのルートは Fortify が自動で用意します。
@@ -26,5 +30,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/home', fn () => view('home-placeholder'))->name('home');
 
         Route::get('/family/invite', [FamilyController::class, 'invite'])->name('family.invite');
+
+        Route::resource('members', MemberController::class)->except(['show', 'create']);
+        Route::resource('events', EventController::class)->except(['show', 'index']);
+        Route::resource('lessons', LessonController::class)->except(['show']);
     });
 });
