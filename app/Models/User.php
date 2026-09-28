@@ -46,11 +46,11 @@ class User extends Authenticatable
     /** この人が所属している家族 */
     public function family()
     {
-        return $this->belongsTo(\App\Models\Family::class);
+        return $this->belongsTo(Family::class);
     }
 
     public function hasFamily(): bool
     {
-        return !is_null($this->family_id);
+        return ! is_null($this->family_id);
     }
 }

@@ -24,7 +24,7 @@ class MonthController extends Controller
     {
         // ---- 1. 表示する月と、表示の切り替え ------------------------
         $base = $request->filled('month')
-            ? Carbon::parse($request->month . '-01')
+            ? Carbon::parse($request->month.'-01')
             : Carbon::today()->startOfMonth();
 
         $month = $base->copy()->startOfMonth();
@@ -46,23 +46,23 @@ class MonthController extends Controller
 
         // しぼり込みは、DBの検索条件として渡す（画面側で弾くより速い）
         $lessons = Lesson::with('member')
-            ->when($onlyMember, fn($q) => $q->where('member_id', $onlyMember))
+            ->when($onlyMember, fn ($q) => $q->where('member_id', $onlyMember))
             ->get();
 
         $events = Event::with('member')
             ->whereBetween('date', [$gridStart->toDateString(), $gridEnd->toDateString()])
-            ->when($onlyMember, fn($q) => $q->where('member_id', $onlyMember))
+            ->when($onlyMember, fn ($q) => $q->where('member_id', $onlyMember))
             ->get();
 
         $anniversaries = Anniversary::with('member')
-            ->when($onlyMember, fn($q) => $q->where('member_id', $onlyMember))
+            ->when($onlyMember, fn ($q) => $q->where('member_id', $onlyMember))
             ->get();
 
         $dues = Task::with('member')
             ->where('is_done', false)
             ->whereNotNull('due_date')
             ->whereBetween('due_date', [$gridStart->toDateString(), $gridEnd->toDateString()])
-            ->when($onlyMember, fn($q) => $q->where('member_id', $onlyMember))
+            ->when($onlyMember, fn ($q) => $q->where('member_id', $onlyMember))
             ->get();
 
         // ---- 3. 天気予報（今日から16日先まで） -----------------------
@@ -84,7 +84,7 @@ class MonthController extends Controller
             }
 
             foreach ($events as $event) {
-                if (!$event->date->isSameDay($day)) {
+                if (! $event->date->isSameDay($day)) {
                     continue;
                 }
                 $colors[] = $event->member->color ?? '#A79BC0';
@@ -100,14 +100,14 @@ class MonthController extends Controller
             }
 
             foreach ($anniversaries as $anniv) {
-                if (!$anniv->fallsOn($day)) {
+                if (! $anniv->fallsOn($day)) {
                     continue;
                 }
                 $age = $anniv->ageOn($day);
                 $colors[] = $anniv->member->color ?? '#C9A227';
                 $chips[] = [
                     'kind' => 'anniv',
-                    'title' => $anniv->title . ($age !== null ? "（{$age}）" : ''),
+                    'title' => $anniv->title.($age !== null ? "（{$age}）" : ''),
                     'color' => $anniv->member->color ?? '#C9A227',
                     'light' => '#FBF2D8',
                 ];
@@ -138,7 +138,7 @@ class MonthController extends Controller
             'members' => $members,
             'showNames' => $showNames,
             'onlyMember' => $onlyMember,
-            'hasWeather' => !empty($forecast),
+            'hasWeather' => ! empty($forecast),
             'family' => $family,
             'prev' => $month->copy()->subMonth()->format('Y-m'),
             'next' => $month->copy()->addMonth()->format('Y-m'),

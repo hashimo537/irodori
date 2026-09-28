@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
-    use HasFactory,BelongsToFamily;
+    use BelongsToFamily,HasFactory;
+
     protected $fillable = ['name', 'color', 'sort_order'];
 
     /**
@@ -33,10 +34,12 @@ class Member extends Model
     {
         return $this->hasMany(Lesson::class);
     }
+
     public function events()
     {
         return $this->hasMany(Event::class);
     }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);

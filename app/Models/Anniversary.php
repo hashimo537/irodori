@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use App\Models\Concerns\BelongsToFamily;
-use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /** 記念日（毎年おなじ月日にくりかえす） */
 class Anniversary extends Model
 {
-    use HasFactory, BelongsToFamily;
+    use BelongsToFamily, HasFactory;
 
     protected $fillable = ['member_id', 'title', 'month', 'day', 'start_year'];
 
@@ -20,10 +20,10 @@ class Anniversary extends Model
     }
 
     /** その日が記念日か */
-    public function fallsOn(\Carbon\CarbonInterface $date): bool
+    public function fallsOn(CarbonInterface $date): bool
     {
         // 2月29日の記念日は、平年は2月28日に出す
-        if ($this->month === 2 && $this->day === 29 && !$date->isLeapYear()) {
+        if ($this->month === 2 && $this->day === 29 && ! $date->isLeapYear()) {
             return $date->month === 2 && $date->day === 28;
         }
 
@@ -31,9 +31,9 @@ class Anniversary extends Model
     }
 
     /** その年に何回目（何さい）か。start_year がなければ null */
-    public function ageOn(\Carbon\CarbonInterface $date): ?int
+    public function ageOn(CarbonInterface $date): ?int
     {
-        if (!$this->start_year) {
+        if (! $this->start_year) {
             return null;
         }
 

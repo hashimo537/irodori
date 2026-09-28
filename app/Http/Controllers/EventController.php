@@ -65,7 +65,7 @@ class EventController extends Controller
                 'nullable',
                 Rule::in(
                     User::where('family_id', auth()->user()->family_id)->pluck('id')->all()
-                )
+                ),
             ],
             'title' => ['required', 'string', 'max:40'],
             'place' => ['nullable', 'string', 'max:40'],

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('member_id')->nullable()->constrained()->nullOnDelete();
             // お迎え担当。決まっていないことも多いので nullable
             $table->foreignId('pickup_user_id')->nullable()
-                  ->constrained('users')->nullOnDelete();
+                ->constrained('users')->nullOnDelete();
             $table->string('title');
             $table->string('place')->nullable();
             $table->date('date');

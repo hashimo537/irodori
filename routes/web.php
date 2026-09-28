@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
  | （/login, /register, /logout）ここには書きません。
  */
 
-Route::get('/', fn() => auth()->check()
+Route::get('/', fn () => auth()->check()
     ? redirect()->route('home')
     : view('welcome'))->name('top');
 

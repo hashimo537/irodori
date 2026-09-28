@@ -10,7 +10,7 @@ class EnsureHasFamily
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->user()?->family_id) {
+        if (! $request->user()?->family_id) {
             return redirect()->route('family.setup');
         }
 

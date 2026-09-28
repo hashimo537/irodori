@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Family;
-use Illuminate\Http\Request;
 use App\Services\WeatherService;
+use Illuminate\Http\Request;
 
 class FamilyController extends Controller
 {
@@ -50,7 +50,7 @@ class FamilyController extends Controller
 
         $family = Family::where('invite_code', $code)->first();
 
-        if (!$family) {
+        if (! $family) {
             return back()
                 ->withErrors(['invite_code' => '招待コードが見つかりませんでした。'])
                 ->withInput();

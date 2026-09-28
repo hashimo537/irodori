@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 class MemberController extends Controller
 {
-   public function index()
+    public function index()
     {
         return view('members.index', [
             'members' => Member::orderBy('sort_order')->orderBy('id')->get(),
@@ -29,7 +29,7 @@ class MemberController extends Controller
     public function edit(Member $member)
     {
         return view('members.edit', [
-            'member'  => $member,
+            'member' => $member,
             'palette' => Member::PALETTE,
         ]);
     }
@@ -54,11 +54,11 @@ class MemberController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
-            'name'  => ['required', 'string', 'max:20'],
+            'name' => ['required', 'string', 'max:20'],
             // 用意した6色のいずれか。自由入力にすると変な色が入る
             'color' => ['required', Rule::in(array_keys(Member::PALETTE))],
         ], [], [
-            'name'  => 'なまえ',
+            'name' => 'なまえ',
             'color' => '色',
         ]);
     }

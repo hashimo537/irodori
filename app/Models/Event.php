@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 /** 単発の予定 */
 class Event extends Model
 {
-    use HasFactory, BelongsToFamily;
+    use BelongsToFamily, HasFactory;
 
     protected $fillable = [
         'member_id',
@@ -39,6 +39,7 @@ class Event extends Model
     {
         return $this->belongsTo(User::class, 'pickup_user_id');
     }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');

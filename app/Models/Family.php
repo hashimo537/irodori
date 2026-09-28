@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Family extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
         'invite_code',
@@ -20,22 +21,27 @@ class Family extends Model
     {
         return $this->hasMany(User::class);
     }
+
     public function members()
     {
         return $this->hasMany(Member::class);
     }
+
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
     }
+
     public function events()
     {
         return $this->hasMany(Event::class);
     }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);
     }
+
     public function anniversaries()
     {
         return $this->hasMany(Anniversary::class);
@@ -44,7 +50,7 @@ class Family extends Model
     /** 天気を出せる状態か */
     public function hasLocation(): bool
     {
-        return !is_null($this->latitude) && !is_null($this->longitude);
+        return ! is_null($this->latitude) && ! is_null($this->longitude);
     }
 
     /** かぶらない招待コードを作る */
